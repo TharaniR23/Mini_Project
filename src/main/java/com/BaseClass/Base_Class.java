@@ -2,7 +2,6 @@ package com.BaseClass;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -128,17 +127,25 @@ public class Base_Class {
 		CellType type = c.getCellType();
 
 		if (type.equals(CellType.STRING)) {
-			 value = c.getStringCellValue();
+			value = c.getStringCellValue();
 
 		} else if (type.equals(CellType.NUMERIC)) {
 
 			double numericCellValue = c.getNumericCellValue();
-			long val = (long)numericCellValue;
+			long val = (long) numericCellValue;
 			value = String.valueOf(val);
-			
+
 		}
 		return value;
 
+	}
+	
+	public static void frameIn(WebElement element) {
+		driver.switchTo().frame(element);
+	}
+	
+	public static void frameOut() {
+		driver.switchTo().defaultContent();
 	}
 
 	public static void close() {

@@ -17,12 +17,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.BaseClass.Base_Class;
-import com.object_manager.Page_Object_Manager;
-import com.pom.Book_Hotel;
-import com.pom.Home_Page;
-import com.pom.Hotel_Search;
-import com.pom.Logout_Page;
-import com.pom.Select_Hotel;
+import com.configuration_helper.File_Reader_Manager_Adactin;
+import com.object_manager_Adactin.Page_Object_Manager;
+import com.pom_Adactin.Book_Hotel;
+import com.pom_Adactin.Home_Page;
+import com.pom_Adactin.Hotel_Search;
+import com.pom_Adactin.Logout_Page;
+import com.pom_Adactin.Select_Hotel;
 
 public class Runner_Class_Adactin extends Base_Class {
 	
@@ -36,15 +37,19 @@ public class Runner_Class_Adactin extends Base_Class {
 
 		PropertyConfigurator.configure("log4j.properties");
 		
-		getUrl("https://adactinhotelapp.com/index.php");
-
+		String url = File_Reader_Manager_Adactin.get_Instance_FRM().get_Instance_CR().get_config_url(); //Used Singleton design pattern
+		
+		getUrl(url);
+		
 		// HOME PAGE
 		
 		// user name
-		inputValueElement(pom.getHp().getName(),particular_Cell_Data("C:\\Users\\ELCOT\\Desktop\\Tharani\\Mini project\\Testcase_Adactin.xlsx", 10,5));
+		String username = File_Reader_Manager_Adactin.get_Instance_FRM().get_Instance_CR().get_config_username(); //Used Singleton design pattern
+		inputValueElement(pom.getHp().getName(),username);
 		
 		// password
-		inputValueElement(pom.getHp().getPass(),particular_Cell_Data("C:\\Users\\ELCOT\\Desktop\\Tharani\\Mini project\\Testcase_Adactin.xlsx", 11,5));
+		String password = File_Reader_Manager_Adactin.get_Instance_FRM().get_Instance_CR().get_config_password(); //Used Singleton design pattern
+		inputValueElement(pom.getHp().getPass(),password);
 
 		// login
 		clickOnElement(pom.getHp().login);
